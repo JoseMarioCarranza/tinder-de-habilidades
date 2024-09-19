@@ -7,6 +7,14 @@ const create = (body) => {
         .returning('*')
 }
 
+const findAll = () => {
+    return knex
+        .select('*')
+        .from('users')
+        .where('active', true) //We only implement the search in fields where logical deletion has not been implemented.
+}
+
 module.exports = {
-    create
+    create,
+    findAll
 }

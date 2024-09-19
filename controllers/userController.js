@@ -13,6 +13,17 @@ const createUser = (req, res) => {
         })
 }
 
+const findAllUsers = (req, res) => {
+    ModelUsers.findAll()
+        .then(rows => {
+            res.status(200).send(rows)
+        })
+        .catch(err => {
+            res.status(400).send({ message: 'Error findig users', err })
+        })
+}
+
 module.exports = {
-    createUser
+    createUser,
+    findAllUsers
 }
