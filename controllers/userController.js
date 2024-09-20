@@ -23,7 +23,18 @@ const findAllUsers = (req, res) => {
         })
 }
 
+const findOneUser = (req, res) => {
+    ModelUsers.findOne(req.params.idUser)
+        .then(rows => {
+            res.status(200).send(rows)
+        })
+        .catch(err => {
+            res.status(400).send({ message: 'Error finding user', err })
+        })
+}
+
 module.exports = {
     createUser,
-    findAllUsers
+    findAllUsers,
+    findOneUser
 }
