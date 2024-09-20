@@ -22,8 +22,17 @@ const findOne = (userId) => {
         .where('active', true) //We only implement the search in fields where logical deletion has not been implemented.
 }
 
+const update = (userId, body) => {
+    return knex
+        .update(body)
+        .from('users')
+        .where('user_id', userId)
+        .returning('*')
+}
+
 module.exports = {
     create,
     findAll,
-    findOne
+    findOne,
+    update
 }

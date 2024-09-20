@@ -33,8 +33,19 @@ const findOneUser = (req, res) => {
         })
 }
 
+const updateUser = (req, res) => {
+    ModelUsers.update(req.params.idUser, req.body)
+        .then(rows => {
+            res.status(200).send(rows)
+        })
+        .catch(err => {
+            res.status(400).send({ message: 'Error updating user', err })
+        })
+}
+
 module.exports = {
     createUser,
     findAllUsers,
-    findOneUser
+    findOneUser,
+    updateUser
 }
