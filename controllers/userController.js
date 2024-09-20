@@ -43,9 +43,31 @@ const updateUser = (req, res) => {
         })
 }
 
+const destroyOneUser = (req, res) => {
+    ModelUsers.destroy(req.params.idUser)
+        .then(rows => {
+            res.status(204).send()
+        })
+        .catch(err => {
+            res.status(400).send({ message: 'Error deleting user', err })
+        })
+}
+
+const softDeleteOneUser = (req, res) => {
+    ModelUsers.softDelete(req.params.idUser)
+        .then(rows => {
+            res.status(204).send()
+        })
+        .catch(err => {
+            res.status(400).send({ message: 'Error soft deleting user', err })
+        })
+}
+
 module.exports = {
     createUser,
     findAllUsers,
     findOneUser,
-    updateUser
+    updateUser,
+    destroyOneUser,
+    softDeleteOneUser
 }
